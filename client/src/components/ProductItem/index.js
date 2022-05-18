@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize, idbPromise} from "../../utils/helpers"
 import { useStoreContext } from '../../utils/GlobalState';
-import { ADD_TO_CART, ADD_MULTIPLE_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+//import { ADD_TO_CART, ADD_MULTIPLE_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 
 
 function ProductItem(item) {
@@ -14,11 +14,11 @@ function ProductItem(item) {
     quantity
   } = item;
 
-  const [state, dispatch] = useStoreContext(); 
+  //const [state, dispatch] = useStoreContext(); 
 
-  const { cart } = state;
+  //const { cart } = state;
 
-  const addToCart = () => {
+  /*const addToCart = () => {
     // find the cart item with the matching id
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
 
@@ -41,7 +41,7 @@ function ProductItem(item) {
 
     idbPromise('cart', 'put', {...item, purchaseQuantity: 1});
   }
-  };
+  };     onClick={addToCart}  */
   
 
   return (
@@ -57,7 +57,7 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
+      <button >Add to cart</button>
     </div>
   );
 }

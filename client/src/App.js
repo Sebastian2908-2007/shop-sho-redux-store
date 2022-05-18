@@ -16,7 +16,8 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import Success from './pages/Success';
 import Success2 from './pages/Success2';
-import { StoreProvider } from './utils/GlobalState';
+//import { StoreProvider } from './utils/GlobalState';
+
 import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
@@ -43,7 +44,6 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <StoreProvider>
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -55,7 +55,6 @@ function App() {
             <Route exact path="/products/:id/success" component={Success2} />
             <Route component={NoMatch} />
           </Switch>
-          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
