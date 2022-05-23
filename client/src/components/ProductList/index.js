@@ -23,20 +23,21 @@ function ProductList() {
    // query for our db data using the useQuery() hook from apollo/client
    const { loading, data } = useQuery(QUERY_PRODUCTS);
   if(loading) {
-    console.log('loading');
+    //console.log('loading');
   };
-  console.log(data);
+ // console.log(data);
 
   // useSelector to read products from the state give a vriable name of state
   const state = useSelector(state => state.products);
-  console.log(state.products);
 
+  // state.categories refers to the slice name forgeting this will cost you days lol!
+  const currentCategory  = useSelector(state => state.categories.currentCategory);
 
 // call useDispatch() dispatch to make things easier and more readable
 const dispatch = useDispatch();
 
   // destructure currenCategory form the state variable retuned by useStoreContext
-  const currentCategory  = useSelector(state => state.currentCategory);
+
  
   
 
@@ -44,7 +45,7 @@ const dispatch = useDispatch();
   useEffect(() => {
     // if data is there send it to global state
    if (data) {
-    console.log(data);
+   // console.log(data);
      // use dispatch and product action along with data from useQuery to update our global store
      dispatch(updateProducts(data.products));
    // lets also take each product and save it to indexedDb using the helper function
@@ -59,7 +60,9 @@ const dispatch = useDispatch();
       dispatch(updateProducts(data.products));
     })
   }
-  }, [data, loading, dispatch]);
+  }, [data, loading, dispatch,]);
+
+
 
 
 
@@ -72,6 +75,8 @@ const dispatch = useDispatch();
       product => product.category._id === currentCategory
     );
   }
+ 
+ 
 
   return (
     <div className="my-2">

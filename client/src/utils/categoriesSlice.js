@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const categoriesSlice = createSlice({
+    // the name below will be integral in accessing data in useSelector
     name: 'categories',
    initialState: { 
     categories: [],
