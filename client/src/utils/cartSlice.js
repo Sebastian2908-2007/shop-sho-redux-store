@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+
+const cartAdapter = createEntityAdapter();
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -31,6 +33,14 @@ const cartSlice = createSlice({
            const cart = state.cart;
            itemsToAdd.forEach(item => cart.push(item));
        },
+       removeFromCartt(state,action) {
+            const updatedCart = state.cart.filter(product => {
+                return product._id !== action.payload;
+            });
+            state.cartOpen = updatedCart.length > 0;
+            state.cart = updatedCart;
+       },
+       
     }
 });
 
@@ -39,7 +49,8 @@ export const {
     addTooCart,
     updateCartQuantity,
     toggleCartt,
-    addMultipleToCart
+    addMultipleToCart,
+    removeFromCartt
 } = cartSlice.actions;
 
 //export reducer
