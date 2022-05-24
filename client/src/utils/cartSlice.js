@@ -23,13 +23,23 @@ const cartSlice = createSlice({
           });
 
        },
+       toggleCartt(state, action) {
+        state.cartOpen = action.payload;
+       },
+       addMultipleToCart(state,action) {
+           const itemsToAdd = action.payload;
+           const cart = state.cart;
+           itemsToAdd.forEach(item => cart.push(item));
+       },
     }
 });
 
 // export action creators
 export const {
     addTooCart,
-    updateCartQuantity
+    updateCartQuantity,
+    toggleCartt,
+    addMultipleToCart
 } = cartSlice.actions;
 
 //export reducer

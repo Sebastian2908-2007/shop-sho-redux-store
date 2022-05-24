@@ -6,7 +6,8 @@ import './style.css';
 //import { useStoreContext } from '../../utils/GlobalState';
 import { useSelector, useDispatch } from 'react-redux';
 // import our toggle cart action
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+//import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+import { toggleCartt, addMultipleToCart } from '../../utils/cartSlice';
 import { idbPromise } from '../../utils/helpers';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
@@ -28,7 +29,7 @@ const Cart = () => {
   useEffect(() => {
       async function getCart() {
           const cart = await idbPromise('cart','get');
-          dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+          dispatch( addMultipleToCart([...cart] ));
       };
 
       if(!state.cart.cart.length) {
@@ -38,7 +39,14 @@ const Cart = () => {
 
   // toggle cart functionality
   function toggleCart() {
-      dispatch({type: TOGGLE_CART});
+    
+      const cartStatus = state.cart.cartOpen;
+
+      if(cartStatus === true) {
+          return dispatch(toggleCartt(false));
+      }else{
+          return dispatch(toggleCartt(true));
+      }
   };
 
   function calculateTotal() {
