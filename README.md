@@ -1,6 +1,7 @@
 # shop-sho-redux-store
 
-# This app has all of the same dependencies as shop-shop-two, with the exeption of : "@reduxjs/toolkit": "^1.8.1",
+# This app has all of the same dependencies as shop-shop-two, with the exeption of :
+    "@reduxjs/toolkit": "^1.8.1",
     "react-redux": "^8.0.1"
 # This App was programmed to practice using redux rather then react's contextApi
 
